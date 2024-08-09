@@ -68,12 +68,16 @@
         .input,
         .select select {
             font-size: 1rem;
-            padding: 0.75rem;
         }
 
         .button.is-link {
             font-size: 1.2rem;
             padding: 0.75rem;
+        }
+
+        .checkbox {
+            text-align: left;
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
@@ -111,16 +115,28 @@
                     <div class="field">
                         <label class="label" for="interests">Выбери интересы:</label>
                         <div class="control">
-                            <div class="select is-multiple is-fullwidth">
-                                <select id="interests" name="interests" multiple required>
-                                    <option value="walking">Прогулки</option>
-                                    <option value="restaurants">Рестораны</option>
-                                    <option value="music">Музыка</option>
-                                    <option value="sports">Спорт</option>
-                                    <option value="technology">Технологии</option>
-                                    <option value="art">Искусство</option>
-                                    <option value="travel">Путешествия</option>
-                                </select>
+                            <div id="interests" name="interests">
+                                <label class="checkbox">
+                                    <input type="checkbox" value="walking"> Прогулки
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" value="restaurants"> Рестораны
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" value="music"> Музыка
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" value="sports"> Спорт
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" value="technology"> Технологии
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" value="art"> Искусство
+                                </label>
+                                <label class="checkbox">
+                                    <input type="checkbox" value="travel"> Путешествия
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -144,10 +160,10 @@
         function submitForm() {
             const age = document.getElementById('age').value;
             const city = document.getElementById('city').value;
-            const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
+            const interests = Array.from(document.querySelectorAll('#interests input:checked')).map(checkbox => checkbox.value);
 
             if (!age || !city || interests.length === 0) {
-                alert("Please fill in all fields before submitting.");
+                alert("Пожалуйста, заполни все поля перед отправкой.");
                 return;
             }
 
