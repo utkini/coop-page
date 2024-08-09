@@ -39,7 +39,7 @@
         <div class="container is-max-tablet">
             <h1 class="title">Бланк вопросов</h1>
             <form id="userForm">
-              <div class="field">
+                <div class="field">
                     <label class="label" for="city">Выбери город:</label>
                     <div class="control">
                         <div class="select">
@@ -55,17 +55,17 @@
                     </div>
                 </div>
 
-              <div class="field">
+                <div class="field">
                     <label class="label" for="age">Укажи год рождения</label>
                     <div class="control">
-                        <input class="input" type="text" id="age" name="age" placeholder="2007" required>
+                        <input class="input" type="number" id="age" name="age" placeholder="2007" required min="1900" max="2024">
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label" for="interests">Выбери интересы:</label>
                     <div class="control">
-                        <div class="select is-multiple" >
+                        <div class="select is-multiple">
                             <select id="interests" name="interests" multiple required>
                                 <option value="walking">Прогулки</option>
                                 <option value="restaurants">Рестораны</option>
@@ -98,6 +98,11 @@
             const city = document.getElementById('city').value;
             const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
 
+            if (!age || !city || interests.length === 0) {
+                alert("Please fill in all fields before submitting.");
+                return;
+            }
+
             const userData = {
                 age: age,
                 city: city,
@@ -107,7 +112,7 @@
             tg.sendData(JSON.stringify(userData));
 
             const resultDiv = document.getElementById('result');
-            resultDiv.innerText = "Data sent to the bot!";
+            resultDiv.innerText = `Data sent to the bot!\nCity: ${city}\nYear of Birth: ${age}`;
             resultDiv.classList.remove('is-hidden');
         }
 
