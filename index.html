@@ -1,60 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cooperate</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-   <style>
+    <style>
         body {
             background-color: #f8f4f9;
+            padding: 10px;
         }
+
         .title {
             color: #d63384;
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
         }
+
         .form-container {
             background-color: white;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         .button.is-link {
             background-color: #d63384;
             border-color: #d63384;
         }
+
         .button.is-link:hover {
             background-color: #e26ea5;
             border-color: #e26ea5;
         }
+
         .notification.is-primary {
             background-color: #f3e5f5;
             color: #4a148c;
+            text-align: center;
         }
+
         .select select,
         .input {
             border-color: #d63384;
             text-align: center;
         }
+
         .label {
             color: #4a148c;
             text-align: center;
             display: block;
             margin-bottom: 0.5rem;
+            font-size: 1rem;
         }
+
         .field {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
+
         .control {
             text-align: center;
         }
+
+        .input,
+        .select select {
+            font-size: 1rem;
+            padding: 0.75rem;
+        }
+
+        .button.is-link {
+            font-size: 1.2rem;
+            padding: 0.75rem;
+        }
     </style>
 </head>
+
 <body>
     <section class="section">
-        <div class="container is-max-desktop">
+        <div class="container">
             <div class="form-container">
                 <h1 class="title">Бланк вопросов</h1>
                 <form id="userForm">
@@ -77,7 +103,8 @@
                     <div class="field">
                         <label class="label" for="age">Укажи год рождения</label>
                         <div class="control">
-                            <input class="input" type="number" id="age" name="age" placeholder="2007" required min="1900" max="2024">
+                            <input class="input" type="number" id="age" name="age" placeholder="2007" required
+                                min="1900" max="2024">
                         </div>
                     </div>
 
@@ -137,9 +164,10 @@
             resultDiv.classList.remove('is-hidden');
         }
 
-        tg.onEvent('mainButtonClicked', function() {
+        tg.onEvent('mainButtonClicked', function () {
             tg.close();
         });
     </script>
 </body>
+
 </html>
