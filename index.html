@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooperate</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+   <style>
+        body {
+            background-color: #f8f4f9;
+        }
+        .title {
+            color: #d63384;
+        }
+        .button.is-link {
+            background-color: #d63384;
+            border-color: #d63384;
+        }
+        .button.is-link:hover {
+            background-color: #e26ea5;
+            border-color: #e26ea5;
+        }
+        .notification.is-primary {
+            background-color: #f3e5f5;
+            color: #4a148c;
+        }
+        .select select,
+        .input {
+            border-color: #d63384;
+        }
+        .label {
+            color: #4a148c;
+        }
+    </style>
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Бланк вопросов</h1>
+            <form id="userForm">
+                <div class="field">
+                    <label class="label" for="age">Укажи год рождения</label>
+                    <div class="control">
+                        <input class="input" type="text" id="age" name="age" placeholder="2000" required>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="city">Выбери город:</label>
+                    <div class="control">
+                        <div class="select">
+                            <select id="city" name="city" required>
+                                <option value="" disabled selected>Выбери город</option>
+                                <option value="New York">Барселона</option>
+                                <option value="Chicago">Бадалона</option>
+                                <option value="Los Angeles">Валенсия</option>
+                                <option value="Chicago">Мадрид</option>
+                                <option value="Chicago">Таррагона</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="interests">Выбери интересы:</label>
+                    <div class="control">
+                        <div class="select is-multiple">
+                            <select id="interests" name="interests" multiple required>
+                                <option value="Music">Музыка</option>
+                                <option value="Sports">Спорт</option>
+                                <option value="Technology">Технологии</option>
+                                <option value="Art">Искусство</option>
+                                <option value="Travel">Путешествия</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-link" type="button" onclick="submitForm()">Submit</button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="result" class="notification is-primary is-hidden"></div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize Telegram Web App
+        const tg = window.Telegram.WebApp;
+        tg.expand(); // Expand the web app to the full viewport
+
+        // Function to handle form submission
+        function submitForm() {
+            const age = document.getElementById('age').value;
+            const city = document.getElementById('city').value;
+            const interests = Array.from(document.getElementById('interests').selectedOptions).map(option => option.value);
+
+            const userData = {
+                age: age,
+                city: city,
+                interests: interests
+            };
+
+            // Send data to the bot via Telegram Web Apps API
+            tg.sendData(JSON.stringify(userData));
+
+            // Show success message
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerText = "Data sent to the bot!";
+            resultDiv.classList.remove('is-hidden');
+        }
+
+        // Handling response from the bot
+        tg.onEvent('mainButtonClicked', function() {
+            tg.close(); // Close the WebApp after successful submission
+        });
+    </script>
+</body>
+</html>
