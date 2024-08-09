@@ -36,42 +36,44 @@
 </head>
 <body>
     <section class="section">
-        <div class="container">
+        <div class="container is-max-tablet">
             <h1 class="title">Бланк вопросов</h1>
             <form id="userForm">
-                <div class="field">
-                    <label class="label" for="age">Укажи год рождения</label>
-                    <div class="control">
-                        <input class="input" type="text" id="age" name="age" placeholder="2000" required>
-                    </div>
-                </div>
-
-                <div class="field">
+              <div class="field">
                     <label class="label" for="city">Выбери город:</label>
                     <div class="control">
                         <div class="select">
                             <select id="city" name="city" required>
                                 <option value="" disabled selected>Выбери город</option>
-                                <option value="New York">Барселона</option>
-                                <option value="Chicago">Бадалона</option>
-                                <option value="Los Angeles">Валенсия</option>
-                                <option value="Chicago">Мадрид</option>
-                                <option value="Chicago">Таррагона</option>
+                                <option value="barcelona">Барселона</option>
+                                <option value="badalona">Бадалона</option>
+                                <option value="valencia">Валенсия</option>
+                                <option value="madrid">Мадрид</option>
+                                <option value="tarragona">Таррагона</option>
                             </select>
                         </div>
+                    </div>
+                </div>
+
+              <div class="field">
+                    <label class="label" for="age">Укажи год рождения</label>
+                    <div class="control">
+                        <input class="input" type="text" id="age" name="age" placeholder="2007" required>
                     </div>
                 </div>
 
                 <div class="field">
                     <label class="label" for="interests">Выбери интересы:</label>
                     <div class="control">
-                        <div class="select is-multiple">
+                        <div class="select is-multiple" >
                             <select id="interests" name="interests" multiple required>
-                                <option value="Music">Музыка</option>
-                                <option value="Sports">Спорт</option>
-                                <option value="Technology">Технологии</option>
-                                <option value="Art">Искусство</option>
-                                <option value="Travel">Путешествия</option>
+                                <option value="walking">Прогулки</option>
+                                <option value="restaurants">Рестораны</option>
+                                <option value="music">Музыка</option>
+                                <option value="sports">Спорт</option>
+                                <option value="technology">Технологии</option>
+                                <option value="art">Искусство</option>
+                                <option value="travel">Путешествия</option>
                             </select>
                         </div>
                     </div>
@@ -79,7 +81,7 @@
 
                 <div class="field">
                     <div class="control">
-                        <button class="button is-link" type="button" onclick="submitForm()">Submit</button>
+                        <button class="button is-link" type="button" onclick="submitForm()">Отправить</button>
                     </div>
                 </div>
             </form>
@@ -89,11 +91,8 @@
     </section>
 
     <script>
-        // Initialize Telegram Web App
         const tg = window.Telegram.WebApp;
-        tg.expand(); // Expand the web app to the full viewport
-
-        // Function to handle form submission
+        tg.expand();
         function submitForm() {
             const age = document.getElementById('age').value;
             const city = document.getElementById('city').value;
@@ -105,18 +104,15 @@
                 interests: interests
             };
 
-            // Send data to the bot via Telegram Web Apps API
             tg.sendData(JSON.stringify(userData));
 
-            // Show success message
             const resultDiv = document.getElementById('result');
             resultDiv.innerText = "Data sent to the bot!";
             resultDiv.classList.remove('is-hidden');
         }
 
-        // Handling response from the bot
         tg.onEvent('mainButtonClicked', function() {
-            tg.close(); // Close the WebApp after successful submission
+            tg.close();
         });
     </script>
 </body>
