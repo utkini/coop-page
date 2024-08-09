@@ -12,6 +12,14 @@
         }
         .title {
             color: #d63384;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .form-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .button.is-link {
             background-color: #d63384;
@@ -28,71 +36,84 @@
         .select select,
         .input {
             border-color: #d63384;
+            text-align: center;
         }
         .label {
             color: #4a148c;
+            text-align: center;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .field {
+            margin-bottom: 1.5rem;
+        }
+        .control {
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <section class="section">
-        <div class="container is-max-tablet">
-            <h1 class="title">Бланк вопросов</h1>
-            <form id="userForm">
-                <div class="field">
-                    <label class="label" for="city">Выбери город:</label>
-                    <div class="control">
-                        <div class="select">
-                            <select id="city" name="city" required>
-                                <option value="" disabled selected>Выбери город</option>
-                                <option value="barcelona">Барселона</option>
-                                <option value="badalona">Бадалона</option>
-                                <option value="valencia">Валенсия</option>
-                                <option value="madrid">Мадрид</option>
-                                <option value="tarragona">Таррагона</option>
-                            </select>
+        <div class="container is-max-desktop">
+            <div class="form-container">
+                <h1 class="title">Бланк вопросов</h1>
+                <form id="userForm">
+                    <div class="field">
+                        <label class="label" for="city">Выбери город:</label>
+                        <div class="control">
+                            <div class="select is-fullwidth">
+                                <select id="city" name="city" required>
+                                    <option value="" disabled selected>Выбери город</option>
+                                    <option value="barcelona">Барселона</option>
+                                    <option value="badalona">Бадалона</option>
+                                    <option value="valencia">Валенсия</option>
+                                    <option value="madrid">Мадрид</option>
+                                    <option value="tarragona">Таррагона</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <label class="label" for="age">Укажи год рождения</label>
-                    <div class="control">
-                        <input class="input" type="number" id="age" name="age" placeholder="2007" required min="1900" max="2024">
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label class="label" for="interests">Выбери интересы:</label>
-                    <div class="control">
-                        <div class="select is-multiple">
-                            <select id="interests" name="interests" multiple required>
-                                <option value="walking">Прогулки</option>
-                                <option value="restaurants">Рестораны</option>
-                                <option value="music">Музыка</option>
-                                <option value="sports">Спорт</option>
-                                <option value="technology">Технологии</option>
-                                <option value="art">Искусство</option>
-                                <option value="travel">Путешествия</option>
-                            </select>
+                    <div class="field">
+                        <label class="label" for="age">Укажи год рождения</label>
+                        <div class="control">
+                            <input class="input" type="number" id="age" name="age" placeholder="2007" required min="1900" max="2024">
                         </div>
                     </div>
-                </div>
 
-                <div class="field">
-                    <div class="control">
-                        <button class="button is-link" type="button" onclick="submitForm()">Отправить</button>
+                    <div class="field">
+                        <label class="label" for="interests">Выбери интересы:</label>
+                        <div class="control">
+                            <div class="select is-multiple is-fullwidth">
+                                <select id="interests" name="interests" multiple required>
+                                    <option value="walking">Прогулки</option>
+                                    <option value="restaurants">Рестораны</option>
+                                    <option value="music">Музыка</option>
+                                    <option value="sports">Спорт</option>
+                                    <option value="technology">Технологии</option>
+                                    <option value="art">Искусство</option>
+                                    <option value="travel">Путешествия</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </form>
 
-            <div id="result" class="notification is-primary is-hidden"></div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-link is-fullwidth" type="button" onclick="submitForm()">Отправить</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="result" class="notification is-primary is-hidden"></div>
+            </div>
         </div>
     </section>
 
     <script>
         const tg = window.Telegram.WebApp;
         tg.expand();
+
         function submitForm() {
             const age = document.getElementById('age').value;
             const city = document.getElementById('city').value;
