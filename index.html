@@ -68,6 +68,7 @@
         .input,
         .select select {
             font-size: 1rem;
+            padding: 0.75rem;
         }
 
         .button.is-link {
@@ -75,9 +76,16 @@
             padding: 0.75rem;
         }
 
+        .checkboxes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
         .checkbox {
-            text-align: left;
+            width: 48%;
             margin-bottom: 0.5rem;
+            text-align: left;
         }
     </style>
 </head>
@@ -89,7 +97,7 @@
                 <h1 class="title">Бланк вопросов</h1>
                 <form id="userForm">
                     <div class="field">
-                        <label class="label" for="city">Выбери город:</label>
+                        <label class="label" for="city">Где ты живешь?</label>
                         <div class="control">
                             <div class="select is-fullwidth">
                                 <select id="city" name="city" required>
@@ -115,7 +123,7 @@
                     <div class="field">
                         <label class="label" for="interests">Выбери интересы:</label>
                         <div class="control">
-                            <div id="interests" name="interests">
+                            <div id="interests" class="checkboxes">
                                 <label class="checkbox">
                                     <input type="checkbox" value="walking"> Прогулки
                                 </label>
